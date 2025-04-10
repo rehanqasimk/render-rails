@@ -1,9 +1,3 @@
-databases:
-  - name: mysite
-    databaseName: mysite
-    user: mysite
-    plan: free
-
 services:
   - type: web
     name: mysite
@@ -14,10 +8,10 @@ services:
     startCommand: "bundle exec rails server"
     envVars:
       - key: DATABASE_URL
-        fromDatabase:
-          name: mysite
-          property: connectionString
+        sync: false  # This will prompt you to set it in Render dashboard instead of exposing it here
       - key: RAILS_MASTER_KEY
         sync: false
+        # You need to set this value in the Render dashboard
+        # This should be the value from your config/master.key file
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
