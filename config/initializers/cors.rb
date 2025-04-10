@@ -2,10 +2,10 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "localhost:5173", "localhost:5174", "localhost:3001", "127.0.0.1:5173", "127.0.0.1:5174"
-
+    origins "*"  # In production, you should specify your frontend domain
     resource "*",
       headers: :any,
-      methods: [ :get, :post, :put, :patch, :delete, :options, :head ]
+      methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
+      expose: [ "Authorization" ]
   end
 end
